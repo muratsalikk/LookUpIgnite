@@ -25,7 +25,7 @@ public class Main {
 
         // Setting up an IP Finder to ensure the client can locate the servers.
         TcpDiscoveryMulticastIpFinder ipFinder = new TcpDiscoveryMulticastIpFinder();
-        ipFinder.setAddresses(Collections.singletonList("127.0.0.1:47500..47530"));
+        ipFinder.setAddresses(Collections.singletonList("192.168.1.106:47500..47530"));
         cfg.setDiscoverySpi(new TcpDiscoverySpi().setIpFinder(ipFinder));
 
         // Starting the node
@@ -35,6 +35,7 @@ public class Main {
         IgniteCache<Integer, String> cache = ignite.getOrCreateCache("myCache");
         cache.put(1, "Hello");
         cache.put(2, "World!");
+        cache.put(3, "byMurat");
 
         System.out.println(">> Created the cache and add the values.");
 
