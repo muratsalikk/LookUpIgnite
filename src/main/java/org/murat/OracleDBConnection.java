@@ -11,7 +11,6 @@ public class OracleDBConnection {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             con = DriverManager.getConnection(
                     "jdbc:oracle:thin:@localhost:1521/muratdb.gantek.local", "muratdbuser", "muratdbuser");
-
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

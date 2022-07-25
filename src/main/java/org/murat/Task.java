@@ -11,7 +11,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 
 
-public class Task {
+public class Task extends Stream{
     Path file;
     int tskId;
     Connection con = new OracleDBConnection().connect();
@@ -50,7 +50,8 @@ public class Task {
                 pstmt.setDate(2,new Date(formatter.parse(csvRecord.get(0)).getTime()));
                 pstmt.setLong(3,Long.parseLong(csvRecord.get(1)));
                 pstmt.setLong(4,Long.parseLong(csvRecord.get(2)));
-                pstmt.setString(5,csvRecord.get(3));
+                int code = new getLongestCode().execute(csvRecord.get(3), itc.getCodeArray() );
+                pstmt.setString(5,itc.cache.get(code));
                 pstmt.addBatch();
                 if(++recordId % batchSize == 0) {
                     pstmt.executeBatch();

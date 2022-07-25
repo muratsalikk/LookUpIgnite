@@ -1,6 +1,8 @@
 package org.murat;
 
 
+import org.apache.ignite.IgniteCache;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,9 +12,10 @@ import java.util.concurrent.TimeUnit;
  * Runs always, create task if a new file occurs
  */
 public class Stream {
-
+    IgniteThinClient itc = new IgniteThinClient();
     void startStream() {
         String dirName = "C:/Users/murat.salik/Desktop/landing";
+
         while(true) {
             try {
                 Files.list(new File(dirName).toPath())
